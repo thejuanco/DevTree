@@ -1,0 +1,19 @@
+{
+  "name": "devtree",
+  "version": "1.0.0",
+  "description": "Typescript y Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thejuanco/DevTree.git"
+  },
+  "author": "Thejuanco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thejuanco/DevTree/issues"
+  },
+  "homepage": "https://github.com/thejuanco/DevTree#readme"
+}
