@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Typescript y Express",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "npm run test"
   },
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/thejuanco/DevTree/issues"
   },
-  "homepage": "https://github.com/thejuanco/DevTree#readme"
+  "homepage": "https://github.com/thejuanco/DevTree#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
