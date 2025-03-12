@@ -1,10 +1,9 @@
 //Esta archivo solo sirve para arrancar el servidor
 import express from "express";
+import router from "./routes/Router.routes"
 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send("Inicio de la app / Typescript")
-})
+app.use("/", router);
 
 export default app
