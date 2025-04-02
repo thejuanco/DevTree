@@ -44,3 +44,26 @@ export const createAccount = async (req : Request , res : Response ): Promise<vo
         console.log(error)
     }
 }
+
+export const login = async (req : Request, res: Response ) : Promise<void> => {
+    try {
+        //Manejo de errores
+        let errors = validationResult(req)
+        if(!errors.isEmpty()){
+            res.status(400).json({errors: errors.array()})
+            return
+        }
+
+        const { email, password } = req.body
+        const userExists = await UserModel.findOne({email})
+
+        if(!userExists){
+            const error = new Error("El usuario no existe")
+            res.status(409).json({error: error.message})
+            return
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+}
