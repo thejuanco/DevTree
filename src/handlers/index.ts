@@ -1,10 +1,18 @@
 import type { Request, Response } from "express" // Importing Request and Response types from express
+import { validationResult } from "express-validator"
 import slug from "slug"
 import UserModel from "../models/User"
 import { hashPassword } from "../untils/auth" 
 
 export const createAccount = async (req : Request , res : Response ): Promise<void> => {
     try {
+        //Manejo de errores
+        let errors = validationResult(req)
+        if(!errors.isEmpty()){
+            res.status(400).json({error: ""})
+            return
+        }
+
         // Check if user already exists
         const { email, password } = req.body
         const userExists = await UserModel.findOne({email})
