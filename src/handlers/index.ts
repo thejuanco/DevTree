@@ -2,7 +2,7 @@ import type { Request, Response } from "express" // Importing Request and Respon
 import { validationResult } from "express-validator"
 import slug from "slug"
 import UserModel from "../models/User"
-import { hashPassword } from "../untils/auth" 
+import { hashPassword, checkPassword } from "../untils/auth" 
 
 export const createAccount = async (req : Request , res : Response ): Promise<void> => {
     try {
@@ -62,6 +62,16 @@ export const login = async (req : Request, res: Response ) : Promise<void> => {
             res.status(409).json({error: error.message})
             return
         }
+
+        //Comparar la contraseña
+        const isPasswordCorrect = await checkPassword(password, userExists.password)
+        if(!isPasswordCorrect){
+            const error = new Error("La contraseña es incorrecta")
+            res.status(401).json({error: error.message})
+            return
+        }
+
+        res.send({message: "Autenticado correctamente"})
 
     } catch (error) {
         console.log(error)
