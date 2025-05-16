@@ -6,13 +6,6 @@ import { hashPassword, checkPassword } from "../untils/auth"
 
 export const createAccount = async (req : Request , res : Response ): Promise<void> => {
     try {
-        //Manejo de errores
-        let errors = validationResult(req)
-        if(!errors.isEmpty()){
-            res.status(400).json({errors: errors.array()})
-            return
-        }
-
         // Check if user already exists
         const { email, password } = req.body
         const userExists = await UserModel.findOne({email})
@@ -47,13 +40,7 @@ export const createAccount = async (req : Request , res : Response ): Promise<vo
 
 export const login = async (req : Request, res: Response ) : Promise<void> => {
     try {
-        //Manejo de errores
-        let errors = validationResult(req)
-        if(!errors.isEmpty()){
-            res.status(400).json({errors: errors.array()})
-            return
-        }
-
+        // Revisar si el usuario existe
         const { email, password } = req.body
         const userExists = await UserModel.findOne({email})
 
