@@ -33,8 +33,8 @@ export const createAccount = async (req : Request , res : Response ): Promise<vo
         //user.handle = handle
         await user.save()
 
+
         res.json({message: "User created"})
-        generateJWT(user)
     } catch (error) {
         console.log(error)
     }
@@ -60,8 +60,8 @@ export const login = async (req : Request, res: Response ) : Promise<void> => {
             return
         }
 
-        res.send({message: "Autenticado correctamente"})
-
+        const token = generateJWT({id: userExists.id})
+        res.send(token)
     } catch (error) {
         console.log(error)
     }
