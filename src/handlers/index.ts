@@ -3,6 +3,7 @@ import { validationResult } from "express-validator"
 import slug from "slug"
 import UserModel from "../models/User"
 import { hashPassword, checkPassword } from "../untils/auth" 
+import { generateJWT } from "../untils/jwt"
 
 export const createAccount = async (req : Request , res : Response ): Promise<void> => {
     try {
@@ -33,6 +34,7 @@ export const createAccount = async (req : Request , res : Response ): Promise<vo
         await user.save()
 
         res.json({message: "User created"})
+        generateJWT(user)
     } catch (error) {
         console.log(error)
     }
