@@ -1,7 +1,7 @@
 //Here is the User model that will be used to store the user data in the database.
 import mongoose, { Schema } from "mongoose";
 
-interface IUser {
+export interface IUser {
     handle: string
     name: string
     email: string
