@@ -61,7 +61,7 @@ export const login = async (req : Request, res: Response ) : Promise<void> => {
             return
         }
 
-        const token = generateJWT({id: userExists.id})
+        const token = generateJWT({id: userExists._id})
         res.send(token)
     } catch (error) {
         console.log(error)
