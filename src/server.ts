@@ -12,7 +12,7 @@ const app = express();
 connectDB();
 
 //cors
-app.use(cors(corsConfig))
+app.use(cors())
 
 //Habilitar la lectura de formularios
 app.use(express.json());

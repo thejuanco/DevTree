@@ -1,4 +1,4 @@
-import type { Request, Response } from "express" // Importing Request and Response types from express
+import type { Request, RequestHandler, Response } from "express" // Importing Request and Response types from express
 import { validationResult } from "express-validator"
 import slug from "slug"
 import jwt from "jsonwebtoken"
@@ -70,4 +70,13 @@ export const login = async (req : Request, res: Response ) : Promise<void> => {
 
 export const getUser = async (req: Request, res: Response ) => {
     res.json(req.user)
+}
+
+export const updateProfile = async (req: Request, res: Response ) => {
+    try {
+        console.log(req.body)
+    } catch (e) {
+        const error = new Error('Ocurrio un error')
+        return res.status(500).json({message: error.message})
+    }
 }
