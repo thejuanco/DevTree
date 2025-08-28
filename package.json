@@ -31,7 +31,8 @@
     "formidable": "^3.5.4",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.0",
-    "slug": "^10.0.0"
+    "slug": "^10.0.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -40,6 +41,7 @@
     "@types/formidable": "^3.4.5",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/slug": "^5.0.9",
+    "@types/uuid": "^10.0.0",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
