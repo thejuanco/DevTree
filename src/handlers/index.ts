@@ -1,10 +1,12 @@
 import type { Request, RequestHandler, Response } from "express" // Importing Request and Response types from express
 import { validationResult } from "express-validator"
 import slug from "slug"
-import jwt from "jsonwebtoken"
+import formidable from "formidable"
+import { v4 as uuid } from "uuid"
 import UserModel from "../models/User"
 import { hashPassword, checkPassword } from "../untils/auth" 
 import { generateJWT } from "../untils/jwt"
+import cloudinary from "../config/cloudinary"
 
 export const createAccount = async (req : Request , res : Response ): Promise<void> => {
     try {
@@ -94,5 +96,26 @@ export const updateProfile = async (req: Request, res: Response ) => {
     } catch (e) {
         const error = new Error('Ocurrio un error')
         return res.status(500).json({message: error.message})
+    }
+}
+
+export const uploadImage = async (req: Request, res: Response ) => {
+    try {
+        const form = formidable({multiples: false})
+        form.parse(req, (error, fields, files) => {
+            cloudinary.uploader.upload(files.file[0].filepath, {public_id: uuid()}, async function(error, result){
+                if(error){
+                    const error = new Error('Ocurrio un error al subir la imagen')
+                    return res.status(500).json({error: error.message})
+                }
+                
+                if(result){
+                    console.log(result.secure_url)
+                }
+            })
+        }) 
+    } catch (e) {
+        const error = new Error('Ocurrio un error')
+        return res.status(500).json({error: error.message})
     }
 }
