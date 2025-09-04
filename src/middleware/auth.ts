@@ -33,7 +33,7 @@ export const authenticate = async (req : Request, res : Response, next: NextFunc
     try {
         const result = jwt.verify(token, process.env.JWT_SECRET)
         if(typeof result === "object" && result.id){
-            const user = await UserModel.findById(result.id).select('name handle email description image')
+            const user = await UserModel.findById(result.id).select('name handle email description image links')
             if(!token){
                 const error = new Error('El usuario no existe')
                 res.status(404).json({error: error.message})
