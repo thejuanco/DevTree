@@ -128,6 +128,14 @@ export const getUserByHandle = async (req: Request, res: Response ) => {
     try {
         //Recuperar el parametro
         const { handle } = req.params
+        const user = await UserModel.findOne({handle}).select('-_id -__v -email -password')
+        //Validacion
+        if(!user){
+            const error = new Error('El usuario no existe')
+            return res.json(404).json({error: error.message})
+        }
+
+        res.json(user)
     } catch (e) {
         const error = new Error('Ocurrio un error')
         return res.status(500).json({message: error.message})
