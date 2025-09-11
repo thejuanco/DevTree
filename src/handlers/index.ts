@@ -123,3 +123,13 @@ export const uploadImage = async (req: Request, res: Response ) => {
         return res.status(500).json({error: error.message})
     }
 }
+
+export const getUserByHandle = async (req: Request, res: Response ) => {
+    try {
+        //Recuperar el parametro
+        const { handle } = req.params
+    } catch (e) {
+        const error = new Error('Ocurrio un error')
+        return res.status(500).json({message: error.message})
+    }
+}
