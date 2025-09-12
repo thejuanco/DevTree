@@ -132,7 +132,7 @@ export const getUserByHandle = async (req: Request, res: Response ) => {
         //Validacion
         if(!user){
             const error = new Error('El usuario no existe')
-            return res.json(404).json({error: error.message})
+            return res.status(404).json({error: error.message})
         }
 
         res.json(user)
